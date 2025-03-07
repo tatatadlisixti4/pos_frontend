@@ -5,6 +5,8 @@ export const CategorySchema = z.object({
 	name: z.string(),
 });
 
+export const CategoriesSchema = z.array(CategorySchema);
+
 export const ProductSchema = z.object({
 	id: z.number(),
 	name: z.string(),
