@@ -3,6 +3,7 @@ import { useStore } from '@/src/store';
 import ShoppingCartItem from './ShoppingCartItem';
 import Amount from './Amount';
 import CouponForm from './CouponForm';
+import SubmitOrderForm from './SubmitOrderForm';
 
 export default function ShoppinCart() {
 	const contents = useStore(state => state.contents); 
@@ -39,7 +40,7 @@ export default function ShoppinCart() {
 						/>
 					</dl>
 					<CouponForm />
-
+					<SubmitOrderForm />
 				</>
 			) : (
 				<p className='text-xl mt-5 text-gray-900 text-center font-bold'>Añade elementos al carrito.</p>

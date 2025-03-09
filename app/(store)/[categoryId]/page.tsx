@@ -5,16 +5,20 @@ import { redirect } from "next/navigation";
 type Params = { params: Promise<{ categoryId: string }> }
 
 async function getProducts(categoryId: string) {
-	const url = `${process.env.API_URL}/categories/${categoryId}?products=true`;	
-	const req = await fetch(url);
+	const url = `${process.env.API_URL}/categories/${categoryId}?products=true`;
+	const req = await fetch(url, {
+		next: {
+			tags: ['products-by-category']
+		}
+	});
 	const json = await req.json();
-	if(!req.ok) redirect('/1');
-	
+	if (!req.ok) redirect('/1');
+
 	const category = CategoryWithProductsResponseSchema.parse(json);
 	return category;
 }
 
-export default async function StorePage({ params } : Params) {
+export default async function StorePage({ params }: Params) {
 	const { categoryId } = await params;
 	const category = await getProducts(categoryId);
 	return (
